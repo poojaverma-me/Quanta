@@ -1,0 +1,278 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens after the Hyper Charts kit (Setproduct): pure-black cards on a
+ * graphite canvas, neutral inks, monospace figures, and neon data accents —
+ * green, mint, cyan → violet gradients, a gold line, violet/orange comparisons.
+ */
+:root {
+  --bg: #111215;
+  --surface: #000000;
+  --surface-2: #0b0b0e;
+  --surface-3: #18191d;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+  --ink: #f5f5f7;
+  --ink-2: #a3a3ad;
+  --ink-3: #6c6c78;
+  --accent: #22d3ee;
+  --neon: #7cff6b;
+  --mint: #2ef2b0;
+  --gold: #f5b83d;
+  --violet: #8b5cf6;
+  --orange: #e5641a;
+  --accent-grad: linear-gradient(120deg, #b6ff8f 0%, #4ade80 28%, #22d3ee 64%, #8b5cf6 100%);
+  --good: #4ade80;
+  --warn: #fbbf24;
+  --bad: #f87171;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-neon: var(--neon);
+  --color-mint: var(--mint);
+  --color-gold: var(--gold);
+  --color-violet: var(--violet);
+  --color-orange: var(--orange);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-mono-face);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+}
+
+/* Soft ambient glow + faint contour texture behind everything. */
+.ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(60rem 30rem at 85% -10%, rgba(139, 92, 246, 0.1), transparent 60%),
+    radial-gradient(50rem 30rem at 5% -5%, rgba(124, 255, 107, 0.06), transparent 60%),
+    radial-gradient(70rem 40rem at 50% 120%, rgba(34, 211, 238, 0.05), transparent 60%);
+}
+
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 28px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 30px 60px -28px rgba(0, 0, 0, 0.95);
+}
+
+.glass {
+  background: rgba(10, 10, 12, 0.72);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--line-strong);
+}
+
+.inset {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.icon-chip {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  flex-shrink: 0;
+}
+
+.accent-text {
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-accent {
+  background: var(--accent-grad);
+  color: #03120a;
+  font-weight: 600;
+  box-shadow: 0 8px 30px -10px rgba(74, 222, 128, 0.6), 0 1px 0 rgba(255, 255, 255, 0.4) inset;
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.2s ease;
+}
+.btn-accent:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 10px 36px -8px rgba(34, 211, 238, 0.7), 0 1px 0 rgba(255, 255, 255, 0.4) inset;
+}
+.btn-accent:active {
+  transform: translateY(1px);
+}
+.btn-accent:disabled {
+  filter: grayscale(0.6) brightness(0.7);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-ghost {
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.btn-ghost:hover {
+  background: #24252b;
+  border-color: var(--line-strong);
+}
+
+.chip {
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  transition: all 0.15s ease;
+}
+.chip:hover {
+  color: var(--ink);
+  border-color: rgba(34, 211, 238, 0.45);
+  background: rgba(34, 211, 238, 0.07);
+}
+
+.focus-ring:focus-visible,
+button:focus-visible,
+a:focus-visible,
+textarea:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgba(34, 211, 238, 0.75);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--font-mono-face), ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2b31 transparent;
+}
+
+/* Timeline connector, like a climbing log. */
+.timeline-item {
+  position: relative;
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 34px;
+  bottom: -10px;
+  width: 1px;
+  background: linear-gradient(var(--line-strong), var(--line));
+}
+.timeline-item:last-child::before {
+  display: none;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.55); }
+  100% { box-shadow: 0 0 0 12px rgba(34, 211, 238, 0); }
+}
+.pulse {
+  animation: pulse-ring 1.4s ease-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.07) 50%, rgba(255, 255, 255, 0.03) 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.6s linear infinite;
+  border-radius: 14px;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.fade-up {
+  animation: fade-up 0.35s ease both;
+}
+
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+.wave-bar {
+  animation: wave 0.9s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.highcharts-tooltip-container {
+  z-index: 60 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  .ambient { display: none; }
+  body { background: #fff; color: #000; }
+}
+
+/* Cyan contour glow for emphasized text, like the terrain outlines. */
+.glow-text {
+  color: var(--accent);
+  text-shadow: 0 0 18px rgba(34, 211, 238, 0.45);
+}
+
+/* Monospace figures with slashed zeros, as in the Hyper Charts cards. */
+.num {
+  font-family: var(--font-mono-face), ui-monospace, "SF Mono", Menlo, monospace;
+  font-feature-settings: "zero" 1, "tnum" 1;
+  letter-spacing: -0.02em;
+}
+
+.neon-text {
+  color: var(--neon);
+  text-shadow: 0 0 16px rgba(124, 255, 107, 0.45);
+}
+
+/* Radar shapes grow in from the center. */
+@keyframes radar-in {
+  from { opacity: 0; transform: scale(0.55) rotate(-8deg); }
+  to { opacity: 1; transform: none; }
+}
+.radar-in {
+  animation: radar-in 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.radar-hit {
+  cursor: default;
+  transition: fill 0.15s ease;
+}
+.radar-hit:hover {
+  fill: rgba(255, 255, 255, 0.035);
+}

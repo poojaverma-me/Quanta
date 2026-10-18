@@ -1,0 +1,39 @@
+{
+  "name": "data-analytics-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "generate-data": "tsx scripts/generate-data.ts",
+    "eval": "tsx scripts/eval.ts",
+    "typecheck": "tsc --noEmit",
+    "verify-demo": "tsx scripts/verify-demo.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.134.0",
+    "@duckdb/duckdb-wasm": "^1.32.0",
+    "@google/genai": "^2.30.0",
+    "highcharts": "^13.1.1",
+    "lucide-react": "^1.57.0",
+    "next": "16.4.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@duckdb/node-api": "^1.5.6-r.1",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "dotenv": "^18.0.8",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.1",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  }
+}
